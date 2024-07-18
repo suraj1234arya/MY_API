@@ -1,0 +1,35 @@
+const express = require('express');
+// const app = express();
+const {app,server}= require('./socket/socket');
+const dotenv = require('dotenv');
+dotenv.config();
+const port = process.env.PORT ;
+require('./config/dbConnection')
+const bodyParser= require('body-parser');
+app.use(bodyParser.json());
+app.use(express.json());
+const userRoute= require('./routes/user.route');
+const staffRoute= require('./routes/staff.route');
+const rightRoute=require('./routes/right.route');
+const msgRoute= require('./routes/msg.route');
+const helpRoute = require('./routes/help.route');
+const authRoute=require('./routes/auth.route');
+const postRoute = require('./routes/post.route');
+const shoapRoute = require('./routes/shoap.route');
+const adminRoute= require('./routes/admin.route');
+const organizerRoute=require('./routes/organizer.route');
+const followRoute= require('./routes/follow.route');
+app.use('/user',userRoute);
+app.use('/staff',staffRoute);
+app.use('/right',rightRoute);
+app.use('/msg',msgRoute);
+app.use('/help',helpRoute);
+app.use('/user/v1', authRoute);
+app.use('/post',postRoute);
+app.use('/shoap',shoapRoute);
+app.use('/admin',adminRoute);
+app.use('/organizer',organizerRoute);
+app.use('/f',followRoute);
+server.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
