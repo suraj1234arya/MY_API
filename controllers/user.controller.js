@@ -213,8 +213,22 @@ const updateUser=async(req,res)=>{
       res.json(error);
      }
  }
- 
- 
+
+ const logout=async(req,res)=>{
+  try {
+    const user = await userModel.findById(req.user);
+    if (user) {
+      user.token="";
+      user.save();
+      res.json({"status":"success","mag":"LOgout Successfully"})
+    } else {
+      res.json({"msg":"User Not fount"})
+    }
+  } catch (error) {
+    res.json(error.message);
+  }
+ }
+
 module.exports={
     RESISTRATION,
     LOGIN,
@@ -222,6 +236,7 @@ module.exports={
     changePassword,
     sendUserPasswordResetEmail,
     resetPassword,
-    sendNotification
+    sendNotification,
+    logout
 }
 

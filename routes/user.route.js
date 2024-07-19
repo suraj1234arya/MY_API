@@ -1,5 +1,5 @@
 const express= require('express');
-const { RESISTRATION, LOGIN, updateUser,changePassword, sendUserPasswordResetEmail,resetPassword, sendNotification} = require('../controllers/user.controller');
+const { RESISTRATION, LOGIN, updateUser,changePassword, sendUserPasswordResetEmail,resetPassword, sendNotification, logout} = require('../controllers/user.controller');
 const auth = require('../middlewares/user.auth');
 const multer = require('../middlewares/user.multer');
 const route=express.Router();
@@ -10,4 +10,5 @@ route.post('/change',auth,changePassword);
 route.post('/send',sendUserPasswordResetEmail);
 route.post('/reset/:id/:token',resetPassword);
 route.post('/send-notification',auth,sendNotification);
+route.get('/logout',auth,logout);
 module.exports=route;
