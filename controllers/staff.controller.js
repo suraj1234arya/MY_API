@@ -11,7 +11,7 @@ const createStaff=async(req,res)=>{
         await staff.save();
         res.json(staff);
     } catch (error) {
-        res.json(error.message)
+        res.json(error.message);
     }
 }
 const findStaff=async(req,res)=>{

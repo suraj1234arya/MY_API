@@ -1,0 +1,34 @@
+const mongoose=require('mongoose')
+const patientSchema=mongoose.Schema({
+    name:{
+        type:String,
+        require:true,
+        unique:true,
+    },
+    diagonsedWith:{
+        type:String
+    },
+    address:{
+        type:String,
+        require:true
+    },
+    age:{
+        type:Number,
+        require:true
+    },
+    blood:{
+        type:String,
+        require:true
+    },
+    gender:{
+        type:String,
+        enum:["M","F","O"]
+    },
+    admittedIn:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Hospital"
+    }
+},
+{timestamps:true}
+)
+module.exports=mongoose.model('Patient',patientSchema);

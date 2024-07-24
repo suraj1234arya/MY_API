@@ -28,7 +28,6 @@ const findOnePost=async(req,res)=>{
    } catch (error) {
       res.json(error)
    }
-
 }
 
 const ALLPosts=async(req,res)=>{
@@ -61,11 +60,10 @@ const findPosts=async(req,res)=>{
             {$group:{_id:'$postTitle'}},
             {$sort:{total:1}},
       ])
-      res.json(post)
+      res.json(post);
    } catch (error) {
       res.json(error);
    }
-
 }
 
 module.exports = {createPost,ALLPosts,findOnePost,findPosts};

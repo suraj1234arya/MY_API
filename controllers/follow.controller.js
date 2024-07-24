@@ -54,4 +54,19 @@ const getOrganizerFollower = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
-module.exports={doFollow,unfollow,getOrganizerFollower};
+const getMyOrganizer=async(req,res)=>{
+    try {
+        const userId=req.params.userId;
+        const myOrg=await Follow.find({userId}).populate('organizerId','name');
+        const count = myOrg.length;
+        res.json({
+            "msg":"Thse are my organizer",
+            myOrg:myOrg,
+            count:count
+        })
+    } catch (error) {
+        res.json(error.message);
+    }
+
+}
+module.exports={doFollow,unfollow,getOrganizerFollower,getMyOrganizer};
